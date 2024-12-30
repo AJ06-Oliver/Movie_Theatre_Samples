@@ -1,0 +1,44 @@
+
+{% extends "base_log.html" %}
+{% block "credpath" %}
+{% load static %}
+
+
+        <main style="margin-top: 100px;">
+            <div class="form-signin">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 fw-normal" style="color:white">Please Register</h1>
+
+                    <div class="form-floating" style="padding-bottom: 10px;">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                        <label for="floatingInput">User Name</label>
+                    </div>
+
+                    <div class="form-floating" style="padding-bottom: 10px;">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Useraddress" name="useraddress">
+                        <label for="floatingInput">Location</label>
+                    </div>
+
+                    <div class="form-floating" style="padding-bottom: 10px;">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="email" name="email">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating" style="padding-bottom: 10px;">
+                        <input type="password" class="form-control" id="floatingInput" placeholder="Password" name="password">
+                        <label for="floatingInput">Password</label>
+                    </div>
+
+                    <div class="checkbox mt-1 mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me" style="color: white;"> Remember me
+                        </label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                    <p class="mt-5 mb-3 text-muted">&copy; 2017–2024</p>
+                </form>
+
+            </div>
+        </main>
+
+       {% endblock %}

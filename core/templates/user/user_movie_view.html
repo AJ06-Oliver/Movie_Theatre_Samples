@@ -1,0 +1,133 @@
+{% extends "base_user.html" %}
+{% block "userpath" %}
+{% load static %}
+
+
+
+    <div>
+        <div class="container col-xxl-8 px-4 py-5 bg-light ">
+          <div class="row flex-lg-row align-items-center g-5 py-5">
+            
+            <div class="col-8 col-sm-8 col-lg-6">
+              <img src="/{{movies.image}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
+                height="500" loading="lazy">
+            </div>
+            <div class="col-4 col-sm-4 col-lg-6">
+              <h3 class="display-5 fw-bold lh-1 mb-3" style="text-transform: uppercase;">{{movies.moviename}}</h3>
+              <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet atque earum autem voluptatibus sequi sit voluptas, accusamus minus fuga molestias quasi assumenda possimus nobis eaque, alias, optio porro nemo quis!<br>
+              {{movies.moviedescription}}
+              <h5 class="display-20  mb-3" >Now playing in: {{theatres.theatrename}}</h5>
+            </p>
+              <div class="pro_d">
+                <div class="text-secondary fw-200">&#9733; 8.4 Ratings & 1.4 million Reviews</div>
+                <div class="text-success">International collection over 2 million</div>
+                <div class="text-danger">sensor rate: {{movies.sensorrate}}</div>
+                <div>
+                  <h2>{{movies.moviegenere}}</h2>
+                </div>
+                <div>
+                  <h4>Details</h4>
+                </div>
+                <div>
+                  <ul>
+                    <li>Director: Anthony Russo, Joe Russo</li>
+                    <li>Writer: Christopher Markus, Stephen McFeely, Stan Lee</li>
+                    <li>Stars: Robert Downey Jr., Chris Evans, Mark Ruffalo</li>
+                    <li>Genre: Action, Adventure, Drama</li>
+                    <li>Release Date: 2019-04-26</li>
+                    </ul>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                  <form method="POST">
+                  {% csrf_token %}            
+                  <div class="form-floating">            
+                  <input type="datetime-local"  id="datetime" name="booking_time" style="height: 32px;">
+                               
+                  <button type="button" onclick="razorpay_payment()" class="btn btn-sm btn-outline-primary">Book Now </button>
+
+                  <a href="/user_movie_review/{{users.id}}/{{movies.id}}"><button type="button" class="btn btn-sm btn-outline-primary">Write a review</button></a>
+                  
+                  
+                </div>
+        
+                </form>
+                </div>
+                <h6 style="margin-top: 10px;">Previous Reviews</h6>
+                <details>
+                  <summary>reviews</summary>
+                  
+                {% for data in reviews %}
+                {% if data.movieid.id is movies.id%}
+                <div style="border: 2px outset">
+                  user: {{data.userid}}<br>
+                  Review: {{data.reviewdescription}}<br>
+                  {% if data.reviewrating == "1" %}
+                  Ratings:  &#11088; 
+                  {% elif data.reviewrating == "2" %}
+                  Ratings:  &#11088;&#11088; 
+                  {% elif data.reviewrating == "3" %}
+                  Ratings:  &#11088;&#11088;&#11088; 
+                  {% elif data.reviewrating == "4" %}
+                  Ratings:  &#11088;&#11088;&#11088;&#11088; 
+                  {% elif data.reviewrating == "5" %}
+                  Ratings:  &#11088;&#11088;&#11088;&#11088;&#11088; 
+                  {% endif %}
+
+                </div>
+                {% endif %}
+                {% endfor %}
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+      <script>
+
+
+              function razorpay_payment(){
+                let movieid = "{{movies.id}}"
+                let theatreid = "{{theatres.id}}"
+                let bookingtime = $('#datetime').val()   /* let bookingtime = document.object.getElementById('datetime')*/
+
+                
+                $.ajax({                                 
+                        type: "POST",
+                        url: "http://127.0.0.1:8000/user_movie_order",
+                        data: {
+                                'datetime': bookingtime,
+                                'theatreid': theatreid,
+                                'movieid': movieid,
+                              },
+                              success: function (res) {
+                                console.log(res)
+                                var options = {
+                                  "key": "rzp_test_4Ex6Tyjkp79GFy",
+                                  "amount": res['order']['amount'],
+                                  "currency": 'INR',
+                                  "callback_url": "http://127.0.0.1:8000/user_movie_booking",
+                                  /* prefill: {
+                                      "email": "nosob88243@xitudy.com",
+                                      "contact": "1234567890"
+                                  }, */
+                                  "name": "Ajay",
+                                  "order_id": res['order']['id']
+                                };
+                      
+                    var rzp1 = new window.Razorpay(options);    
+                    rzp1.open();
+                }
+                }); 
+
+
+              }
+
+
+      </script>
+
+{% endblock %}

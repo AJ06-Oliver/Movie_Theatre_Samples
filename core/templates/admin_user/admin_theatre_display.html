@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+
+<section>
+            
+    <!--for demo wrap-->
+    <div>
+    <h4 style="text-align: center;color: white;">THEATRE</H4>
+
+    <a href="/admin_theatre_add" class="btn btn-outline-light me-2" style="margin-bottom : 20px;">Add-details</a>
+       
+    <div class="tbl-header">
+        
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th style="color: black;">SlNo</th>
+            <th style="color: black;">Theatre</th>
+            <th style="color: black;">Address</th>
+            <th style="color: black;">Description</th>
+            <th style="color: black;">Rating</th>
+            <th style="color: black;">EMAIL</th>
+            <th style="color: black;">Action</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+        
+        {% for data in theatres %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{data.theatrename}}</td>
+            <td>{{data.theatrelocation}}</td>
+            <td>{{data.theatredescription}}</td>
+            <td>{{data.rating}}</td>
+            <td>{{data.userid.email}}</td>
+            <td>
+            <a href="/admin_theatre_edit/{{data.userid.id}}" class="btn btn-outline-light me-2">edit</a>
+            <a href="/admin_theatre_delete/{{data.userid.id}}" class="btn btn-outline-light me-2">delete</a>
+            </td>
+            
+          </tr>
+          {% endfor %}        
+        
+        </tbody>
+      </table>
+    </div>
+</div>
+
+
+<a href="/admin_movie_bookings" class="btn btn-outline-light me-2" style="margin-bottom : 20px;margin-top: 20px;">see all bookings</a>
+  </section>
+
+
+
+{% endblock %}

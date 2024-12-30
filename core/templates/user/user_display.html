@@ -1,0 +1,83 @@
+{% extends "base_user.html" %}
+{% block "userpath" %}
+{% load static %}
+
+
+<style>
+    .card {
+        cursor: pointer;
+    }
+
+    .card:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+</style>
+    <main>
+        <div class="album py-5 bg-light">
+                <div class="container">
+                    <h1 style="color: black;">MOVIE-LIST</h1>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                       
+                        {% for data in movie_details %}
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                
+                                <div>
+                                    <center> <img src="/{{data.movies.image}}" class="p-2" width="75%" style="height: 450px;">
+                                    </center>
+                                </div>                               
+                                <div class="card-body">
+                                    <div>
+                                        <p class="card-text text-secondary text-muted">Details</p>
+                                    </div>
+                                    <div>
+                                        <h5>{{data.movies.moviename}}</h5>
+                                    </div> 
+                                    <div>
+                                        <p class="card-text text-secondary text-muted">Now playing</p>
+                                    </div>
+                                    <div class="text-secondary fw-200">&#9733; {{data.movies.theatreid.rating}} Ratings & 1m+ Reviews</div>
+                                    <div class="text-success">282 Rs</div>
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <div><a href="/user_movie_view/{{data.registrations.userid.id}}/{{data.movies.id}}/{{data.movies.theatreid.id}}"><button type="button" class="btn btn-sm btn-outline-primary">View
+                                                details</button></a></div>
+                                        
+
+                                    {% for bookings in data.bookings  %} 
+
+                                    {% if data.movies.id is bookings.movieid %}
+
+                                        {% if bookings.status == 0 %}
+                                        <div><small class="btn btn-sm btn-outline-warning">{{data.bookings.movieid.moviename}} In Progress</small></div>
+                                        {% elif bookings.status == 1  %}
+                                        <div><small class="btn btn-sm btn-outline-success" >{{data.bookings.movieid.moviename}} Approved</small></div>
+
+                                        <div><a href="/user_movie_ticket/{{bookings.id}}"><button type="button" class="btn btn-sm btn-outline-success">view ticket</button></a></div>
+                                        {% else %}
+                                        <div><small class="btn btn-sm btn-outline-danger" >{{data.bookings.movieid.moviename}} Cancelled</small></div>
+                                        {% endif %} 
+                                    {% endif %} 
+                                {% endfor %}
+                                    </div> 
+                                    
+                                
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                        
+
+
+                        </div>
+                    </div>
+                </div>    
+        </div>
+
+    </main>
+
+
+
+{% endblock %}

@@ -1,0 +1,7 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://wallup.net/wp-content/uploads/2019/09/859126-poster-movie-film-movies-posters-748x529.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}

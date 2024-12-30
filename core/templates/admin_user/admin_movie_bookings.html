@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+
+<main>
+    <div class="form-signin" style="margin-top: 20px;margin-left: 400px">
+        
+        <form method="POST" >
+          {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">BOOKINGS</h1>
+
+            <div class="form-floating" style="padding-top: 10px;">
+              
+                <input type="datetime-local" class="form-control" id="floatingInput"  name="from_date" >
+                <label for="floatingInput">From date</label>
+                
+            </div>
+            <div class="form-floating" style="padding-top: 10px;">
+              
+                <input type="datetime-local" class="form-control" id="floatingInput"  name="to_date" >
+                <label for="floatingInput">To date</label>
+                
+                
+
+            </div>
+
+          
+            <button type = "submit" class="btn btn-outline-light me-2" style="margin-bottom : 20px;margin-top: 20px;">search</button>
+            
+           
+
+    </div>
+</main>     
+   
+<section>
+            
+    <!--for demo wrap-->
+    <div>
+    <h4 style="text-align: center;color: white; padding-bottom: 20px;">BOOKING DETAILS</H4>
+       
+    <div class="tbl-header">
+        
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>SLNO</th>
+            <th>BOOKED USER</th>
+            <th>MOVIE</th>
+            <th>THEATRE</th>
+            <th>BOOKING TIME</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+        
+
+          {% for data in bookings %}
+                      
+          <tr>
+            <td style="padding-left: 30px;">{{forloop.counter}}</td>
+            <td style="padding-left: 10px;">{{data.userid.email}}</td>
+            <td style="padding-left: 20px;">{{data.movieid.moviename}}</td>
+            <td style="padding-left: 20px;">{{data.theatreid.theatrename}}</td>
+            <td style="padding-left: 20px;">{{data.booking_time}}</td>          
+            <td><class="btn btn-outline-success me-2">Approved</td>                        
+          </tr>
+          
+
+          {% endfor %}
+          
+
+        </tbody>
+      </table>    
+    </div>
+    
+</div>
+  </section>
+
+
+{% endblock %}

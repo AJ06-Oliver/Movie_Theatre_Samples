@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+
+
+<style>
+    .checkbox-wrapper-21 .control {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      .checkbox-wrapper-21 .control input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      .checkbox-wrapper-21 .control__indicator {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 18px;
+        width: 18px;
+        background: #e6e6e6;
+      }
+      .checkbox-wrapper-21 .control:hover input ~ .control__indicator,
+      .checkbox-wrapper-21 .control input:focus ~ .control__indicator {
+        background: #ccc;
+      }
+      .checkbox-wrapper-21 .control input:checked ~ .control__indicator {
+        background: #2aa1c0;
+      }
+      .checkbox-wrapper-21 .control:hover input:not([disabled]):checked ~ .control__indicator,
+      .checkbox-wrapper-21 .control input:checked:focus ~ .control__indicator {
+        background: #0e647d;
+      }
+      .checkbox-wrapper-21 .control input:disabled ~ .control__indicator {
+        background: #e6e6e6;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+      .checkbox-wrapper-21 .control__indicator:after {
+        content: '';
+        position: absolute;
+        display: none;
+      }
+      .checkbox-wrapper-21 .control input:checked ~ .control__indicator:after {
+        display: block;
+      }
+      .checkbox-wrapper-21 .control--checkbox .control__indicator:after {
+        left: 8px;
+        top: 4px;
+        width: 3px;
+        height: 8px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .checkbox-wrapper-21 .control--checkbox input:disabled ~ .control__indicator:after {
+        border-color: #7b7b7b;
+      }
+      :root {
+        --background-gradient: linear-gradient(178deg, #ffff33 10%, #3333ff);
+        --gray: #34495e;
+        --darkgray: #2c3e50;
+      }
+    </style>
+    <main>
+      <div class="form-signin" style="margin-top: 20px;margin-left: 400px">
+          
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+              <h1 class="h3 mb-3 fw-normal">EDIT-MOVIE</h1>
+  
+  
+              <div class="form-floating" style="margin-top: 10px;">
+                
+                <input type="text" class="form-control" id="floatingInput"  name="theatrename" value="{{movies.theatreid.theatrename}}" readonly>
+                <label for="floatingInput">NAME</label>
+            </div>
+  
+              <div class="form-floating" style="margin-top: 10px;">
+                
+                  <input type="text" class="form-control" id="floatingInput" placeholder="name" name="moviename" value="{{movies.moviename}}">
+                  <label for="floatingInput">NAME</label>
+              </div>
+              
+               
+              <div class="form-floating" style="margin-top: 10px;">
+                  <textarea class="form-control" id="floatingInput" name="moviedescription">{{movies.moviedescription}}</textarea>
+                  <label for="floatingInput"> DESCRIPTION </label>
+              </div>
+  
+              <div class="form-floating">
+                <select class="form-control" id="floatingInput" style="margin-top: 10px;" name="movielanguage">
+                    <option value="English" {% if movies.movielanguage == "English" %}selected{% endif %}>English</option>
+                    <option value="Hindi" {% if movies.movielanguage == "Hindi" %}selected{% endif %}>Hindi</option>
+                    <option value="Tamil" {% if movies.movielanguage == "Tamil" %}selected{% endif %}>Tamil</option>
+                </select>
+              </div>
+  
+              <div class="form-floating">
+                <select class="form-control" id="floatingInput" style="margin-top: 10px;"  name="moviegenere">
+                    <option value="Action" {% if movies.moviegenere == "Action" %}selected{% endif %}>Action</option>
+                    <option value="Scifi" {% if movies.moviegenere == "Scifi" %}selected{% endif %}>Scifi</option>
+                    <option value="Horror" {% if movies.moviegenere == "Horror" %}selected{% endif %}>Horror</option>
+                    <option value="Comedy" {% if movies.moviegenere == "Comedy" %}selected{% endif %}>Comedy</option>
+                </select>
+              </div>movies
+  
+              <div class="form-floating" style="margin-top: 10px;">
+                  <h6 style="color: white;">RATED</h6>
+  
+                    <div style="margin-top: 5px;" value = "sensorrate">
+                      <input type="checkbox" name="sensorrate" value="u" {% if "u" in movies.sensorrate %}checked{% endif %}/>
+                      <span style="color: #fff;">U</span>
+  
+                      <input type="checkbox" name="sensorrate" value="ua" {% if "ua" in movies.sensorrate %}checked{% endif %}>
+                      <span style="color: #fff;">UA</span>
+                    
+                      <input type="checkbox" name="sensorrate"  value="a" {% if "a" in movies.sensorrate %}checked{% endif %}>
+                      <span style="color: #fff;">A</span>
+  
+                      <input type="checkbox" name="sensorrate"  value="s" {% if "s" in movies.sensorrate %}checked{% endif %}>
+                      <span style="color: #fff;">S</span>
+                    </div>
+              </div>
+  
+  
+              <div style="margin-top: 10px;">
+                <input type="file" name="image">
+                {% if movies.image %}
+                  <div>
+                  <img src="/{{movies.image}}" alt="Current Image" style="max-width: 100px; height: auto;">
+                  </div>
+                  {% endif %}
+               </div>
+  
+              <button class="w-100 btn btn-lg btn-primary" style="margin-top: 10px;" type="submit">Update</button>
+          </form>
+          
+  
+      </div>
+  </main>
+  
+  <script>
+    let inpele = document.querySelector('input[type="file"]');
+    let imge = document.querySelector('img');
+    inpele.addEventListener('change', function () {
+        let url = URL.createObjectURL(inpele.files[0]);
+        imge.src = url;
+        console.log(url);
+    });
+    </script>
+
+
+
+{% endblock %}

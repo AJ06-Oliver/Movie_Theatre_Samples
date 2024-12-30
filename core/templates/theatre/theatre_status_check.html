@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+
+<main>
+    <div class="form-signin" style="margin-top: 20px;margin-left: 400px">
+        
+        <form method="POST" >
+          {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">EDIT-STATUS</h1>
+
+            <div class="form-floating" style="margin-top: 10px;">
+              
+                <input type="text" class="form-control" id="floatingInput"  name="userid" value="{{bookings.userid}}" readonly>
+                <label for="floatingInput">USER</label>
+            </div>
+
+            <div class="form-floating" style="margin-top: 10px;">
+              
+              <input type="text" class="form-control" id="floatingInput"  name="theatrename" value="{{bookings.theatreid.theatrename}}" readonly>
+              <label for="floatingInput">THEATRE</label>
+          </div>
+
+            <div class="form-floating" style="margin-top: 10px;">
+              
+                <input type="text" class="form-control" id="floatingInput" name="moviename" value="{{bookings.movieid.moviename}}"readonly>
+                <label for="floatingInput">MOVIE</label>
+            </div>
+
+            <div class="form-floating" style="margin-top: 10px;">
+              
+                <input type="text" class="form-control" id="floatingInput" name="booking_time" value="{{bookings.booking_time}}"readonly>
+                <label for="floatingInput">BOOKING</label>
+            </div>
+
+            <div class="form-floating">
+              <select class="form-control" id="floatingInput" style="margin-top: 10px;" name="status">
+                  <option value="0" {% if bookings.status == "0" %}selected{% endif %}>In Progress</option>
+                  <option value="1" {% if bookings.status == "1" %}selected{% endif %}>Approved</option>
+                  <option value="2" {% if bookings.status == "2" %}selected{% endif %}>Rejected</option>
+              </select>
+            </div>
+
+
+            <button class="w-100 btn btn-lg btn-primary" style="margin-top: 10px;" type="submit">Update</button>
+        </form>
+        
+
+    </div>
+</main>
+            
+   
+
+
+
+{% endblock %}

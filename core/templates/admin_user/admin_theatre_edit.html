@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+<main>
+    <div class="form-signin" style="margin-top: 50px;margin-left: 400px;">
+        
+        <form method="POST">
+            {% csrf_token %}
+              <h1 class="h3 mb-3 fw-normal">EDIT-THEATRE</h1>
+  
+              <div class="form-floating">
+                
+                  <input type="text" class="form-control" id="floatingInput" placeholder="name" name="theatrename" value="{{theatres.theatrename}}">
+                  <label for="floatingInput"></label>
+              </div>
+  
+              <div class="form-floating"> 
+                
+                  <input type="text" class="form-control" id="floatingInput" placeholder="location" name="theatrelocation" value="{{theatres.theatrelocation}}">
+                  <label for="floatingInput">LOCATION</label>
+              </div>
+               
+              <div class="form-floating" style="margin-top: 10px;">
+                  <textarea class="form-control"  name="theatredescription">{{theatres.theatredescription}}</textarea>
+                  <label for="floatingInput"></label>
+              </div>
+  
+            
+            <div class="form-floating">
+                <select class="form-control" id="floatingInput" style="margin-top: 10px;" name="rating" >
+                    <option value="1" {% if theatres.rating == "1"%}selected{% endif %}>&#11088;</option>
+                    <option value="2" {% if theatres.rating == "2"%}selected{% endif %}>&#11088;&#11088;</option>
+                    <option value="3" {% if theatres.rating == "3"%}selected{% endif %}>&#11088;&#11088;&#11088;</option>
+                    <option value="4" {% if theatres.rating == "4"%}selected{% endif %}>&#11088;&#11088;&#11088;&#11088;</option>
+                    <option value="5" {% if theatres.rating == "5"%}selected{% endif %}>&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+                </select>
+            </div>
+
+            <div class="form-floating">
+              
+                <input type="email" class="form-control" id="floatingInput" style placeholder="email" name="email" value ="{{theatres.userid.email}}">
+                <label for="floatingInput">Email</label>
+            </div>
+           
+
+            <button class="w-100 btn btn-lg btn-primary" style="margin-top: 10px;" type="submit">Update</button>
+        </form>
+        
+
+    </div>
+</main>
+
+
+
+{% endblock %}

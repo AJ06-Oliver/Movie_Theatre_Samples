@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+
+<section>
+            
+    <!--for demo wrap-->
+    <div>
+    <h4 style="text-align: center;color: white;">Shows</H4>
+
+    <a href="/admin_movie_add" class="btn btn-outline-light me-2" style="margin-bottom : 20px;">Add-details</a>
+       
+    <div class="tbl-header">
+        
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>SlNo</th>
+            <th>Theatre Name</th>
+            <th>Movie</th>
+            <th>Description</th>
+            <th>Language</th>
+            <th>movie Genere</th>
+            <th>Sensor rate</th>
+            <th>Poster</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+
+        {% for data in movies %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{data.theatreid.theatrename}}</td>
+            <td>{{data.moviename}}</td>
+            <td>{{data.moviedescription}}</td>
+            <td>{{data.movielanguage}}</td>
+            <td>{{data.moviegenere}}</td>
+            <td>{{data.sensorrate}}</td>
+            {% if data.image %}
+            <td><img src="/{{data.image}}" alt="" style="width: 100px; height: 150px"></td>
+            {% else %}
+            <td>no image</td>
+            {% endif %}     
+            <td>
+            <a href="/admin_movie_edit/{{data.id}}" class="btn btn-outline-light me-2">edit</a>
+            <a href="/admin_movie_delete/{{data.id}}" class="btn btn-outline-light me-2">delete</a>
+            </td>
+            
+          </tr>
+          {% endfor %}
+
+      
+        
+        
+        </tbody>
+      </table>
+    </div>
+</div>
+<a href="/admin_movie_bookings" class="btn btn-outline-light me-2" style="margin-bottom : 20px;margin-top: 20px;">see all bookings</a>
+  </section>
+
+
+
+{% endblock %}

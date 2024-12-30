@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+<main>
+    <div class="form-signin" style="margin-top: 50px;margin-left: 400px;">
+        
+        <form method="POST">
+          {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">REVIEW</h1>
+
+
+            <div class="form-floating">
+              
+                <input type="text" class="form-control" id="floatingInput" placeholder="moviename" name="movieid" value="{{movies.moviename}}" readonly>
+                <label for="floatingInput">Moviename</label>
+            </div>
+             
+            <div class="form-floating" style="margin-top: 10px;">
+                <textarea class="form-control" id="floatingInput" name="reviewdescription"></textarea>
+                <label for="floatingInput"> DESCRIPTION </label>
+            </div>
+
+       
+            <div class="form-floating">
+                <select class="form-control" id="floatingInput" style="margin-top: 10px;" name="reviewrating">
+                    <option value="1" >&#11088;</option>
+                    <option value="2" >&#11088;&#11088;</option>
+                    <option value="3" >&#11088;&#11088;&#11088;</option>
+                    <option value="4" >&#11088;&#11088;&#11088;&#11088;</option>
+                    <option value="5" >&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+                </select>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" style="margin-top: 10px;" type="submit">Add</button>
+        </form>
+        
+    </div>
+    </div>
+    
+</main>
+
+
+
+{% endblock %}

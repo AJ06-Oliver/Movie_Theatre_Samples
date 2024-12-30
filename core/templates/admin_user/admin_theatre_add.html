@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block "contentpath" %}
+{% load static %}
+
+<main>
+    <div class="form-signin" style="margin-top: 50px;margin-left: 400px;">
+        
+        <form method="POST">
+          {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">ADD-THEATRE</h1>
+
+            <div class="form-floating">
+              
+                <input type="text" class="form-control" id="floatingInput" placeholder="name" name="theatrename">
+                <label for="floatingInput">NAME</label>
+            </div>
+
+            <div class="form-floating">
+              
+                <input type="text" class="form-control" id="floatingInput" placeholder="location" name="theatrelocation">
+                <label for="floatingInput">LOCATION</label>
+            </div>
+             
+            <div class="form-floating" style="margin-top: 10px;">
+                <textarea class="form-control" id="floatingInput" name="theatredescription"></textarea>
+                <label for="floatingInput"> DESCRIPTION </label>
+            </div>
+
+       
+            <div class="form-floating">
+                <select class="form-control" id="floatingInput" style="margin-top: 10px;" name="rating">
+                    <option value="1" >&#11088;</option>
+                    <option value="2" >&#11088;&#11088;</option>
+                    <option value="3" >&#11088;&#11088;&#11088;</option>
+                    <option value="4" >&#11088;&#11088;&#11088;&#11088;</option>
+                    <option value="5" >&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+                </select>
+            </div>
+            <div class="form-floating">
+              
+                <input type="email" class="form-control" id="floatingInput" placeholder="email" name="email">
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+              
+                <input type="password" class="form-control" id="floatingInput" placeholder="password" name="password">
+                <label for="floatingInput">Password</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" style="margin-top: 10px;" type="submit">Add</button>
+        </form>
+        
+    </div>
+    </div>
+    
+</main>
+
+
+
+{% endblock %}

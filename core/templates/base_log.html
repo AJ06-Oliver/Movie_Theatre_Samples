@@ -1,0 +1,69 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>base_user</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/heroes/heroes.css' %}">
+  <link rel="stylesheet" href="{% static 'background for landing.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'downloaded_table.css' %}"> {% endcomment %}
+
+ 
+
+  <style>
+    .pro_d {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+  
+    }
+    
+  </style>
+  <style>
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+        height: max-content;
+      }
+      
+      
+      
+      .form-signin .form-floating:focus-within {
+        z-index: 2;
+      }
+      
+      .form-signin input[type="text"] {
+        margin-bottom: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      
+      .form-signin input[type="text"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+</style>
+</head>
+<body>
+
+
+{% include "cred_h.html" %}
+
+{% block "credpath" %}{% endblock %}
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="{% static 'javascript/bootstrap.js' %}"></script>
+
+</html>

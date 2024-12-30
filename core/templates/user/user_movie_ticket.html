@@ -1,0 +1,42 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% block "contentpath" %}  
+{% load static %} 
+
+
+<div>
+    <h1 style="text-align: center;">Movie Ticket</h1>
+    <hr>
+    <table style="width: 100%; border-collapse: collapse;" border="1">
+        <tr>
+            <th>Movie Name</th>
+            <td>{{ bookings.movieid.moviename }}</td>
+        </tr>
+        <tr>
+            <th>Show Date</th>
+            <td>{{ bookings.booking_time}}</td>
+        </tr>
+        <tr>
+            <th>Duration</th>
+            <td>2hours: 40 mins</td>
+        </tr>
+        <tr>
+            <th>Seats</th>
+            <td>F12 - F17</td>
+        </tr>
+        <tr>
+            <th>Owner</th>
+            <td>{{ bookings.userid }}</td>
+        </tr>
+    </table>
+    <hr>
+    <p style="text-align: center;">Enjoy !!!</p>  
+   
+</div>
+     <a href = "{% url 'download_movie_ticket' bookings.id %}">
+<div  style="text-align: center;"><button type = "submit">Download</button></a></div>
+     </a>
+
+
+{% endblock %} 
+
+

@@ -1,0 +1,38 @@
+ 
+        
+<style>
+
+    
+</style>
+
+        <!-- Sidebar Start -->
+        <div class="content" style="width: 300px;">
+            <nav class="navbar bg-light navbar-light" style="padding-left: 20px;padding-bottom: 500px; height: 750px;">
+                <a href="" class="navbar-brand mx-4 mb-3" >
+                    <h3 class="text-secondary" ><i class="fa fa-hashtag me-2" ></i>DASHBOARD</h3>
+                </a>
+                
+                <div class="navbar-nav w-100">
+                    <a href="" class="nav-item nav-link active" style="margin-left: 20px;"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    {% comment %} <div class="navbar-nav w-100">
+                        <a href="emp_dispmoviepath" class="nav-item nav-link active" style="margin-left: 20px;"><i class="fa fa-tachometer-alt me-2"></i>Assign Movie</a>
+                    </div> {% endcomment %}
+                    {% if request.user.usertype == 0 %}
+                    <div class="nav-item dropdown" style="margin-left: 20px;position: absolute;top: 230px;">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Theatre details</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="/admin_theatre_display" class="dropdown-item">Theatre</a>
+                            <a href="/admin_movie_display" class="dropdown-item">Movies</a>
+                            
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                   
+
+                    
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->

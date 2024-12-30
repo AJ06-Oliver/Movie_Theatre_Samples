@@ -1,0 +1,40 @@
+{% extends "base_log.html" %}
+{% block "credpath" %}
+{% load static %}
+
+   
+
+
+
+        <main style="margin-top: 100px;">
+            <div class="form-signin">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 fw-normal" style="color: white;">Log in</h1>
+
+                    <div class="form-floating" style="padding-bottom: 20px;">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="Email" name ="email">
+                        <label for="floatingInput">Name</label>
+                    </div>
+                    <div class="form-floating" style="padding-bottom: 20px;">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+
+                    <div class="checkbox mb-3">
+                        <label style="color: white;">
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+                    <p class="mt-5 mb-3 text-muted">&copy; 2017–2024</p>
+                </form>
+
+            </div>
+        </main>
+
+
+
+
+
+{% endblock %}
